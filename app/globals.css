@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --neural-cyan: #06b6d4;
+  --neural-purple: #a855f7;
+  --neural-dark: #0a0a0a;
+}
+
+body {
+  background: var(--neural-dark);
+  color: white;
+}
+
+/* Нейро-вайб анимация */
+@keyframes neural-glitch {
+  0%, 100% {
+    transform: translate(0);
+    filter: blur(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+    filter: blur(1px);
+  }
+  40% {
+    transform: translate(2px, -2px);
+    filter: blur(0.5px);
+  }
+  60% {
+    transform: translate(-1px, -1px);
+    filter: blur(1.5px);
+  }
+  80% {
+    transform: translate(1px, 1px);
+    filter: blur(0.5px);
+  }
+}
+
+.neural-glitch {
+  animation: neural-glitch 0.2s ease-in-out;
+}
+
+/* Градиентный текст */
+.neural-gradient-text {
+  background: linear-gradient(135deg, var(--neural-cyan), var(--neural-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Нейро-линия */
+.neural-line {
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--neural-cyan), 
+    var(--neural-purple), 
+    transparent
+  );
+  animation: neural-pulse 2s ease-in-out infinite;
+}
+
+@keyframes neural-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scaleX(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
