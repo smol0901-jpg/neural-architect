@@ -3,139 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEURAL ARCHITECT PREMIUM++ | Neural Core v2.0</title>
+  <title>NEURAL ARCHITECT | Neural Core v2.1</title>
   <style>
-    :root {
-      --neural-cyan: #06b6d4;
-      --neural-purple: #a855f7;
-      --neural-dark: #0a0a0a;
-    }
+    :root { --cyan: #06b6d4; --purple: #a855f7; --bg: #0a0a0a; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --bg: var(--neural-dark); }
-    body {
-      background: var(--bg);
-      color: white;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      overflow: hidden;
-      min-height: 100vh;
-    }
-    #canvas-bg, #canvas-particles, #canvas-core {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-    }
+    body { background: var(--bg); color: #fff; font-family: system-ui, sans-serif; overflow: hidden; min-height: 100vh; }
+    #canvas-bg, #canvas-particles, #canvas-core { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
     #canvas-bg { z-index: 1; opacity: 0.3; }
     #canvas-particles { z-index: 2; }
     #canvas-core { z-index: 3; }
-    .container {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .neural-title { text-align: center; }
-    .neural-title h1 {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      background: linear-gradient(135deg, var(--neural-cyan), var(--neural-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, var(--neural-cyan), var(--neural-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .premium-line {
-      width: 250px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--neural-cyan), var(--neural-purple), transparent);
-      margin-top: 24px;
-      animation: neural-pulse 2s ease-in-out infinite;
-    }
-    @keyframes neural-pulse {
-      0%, 100% { opacity: 0.5; transform: scaleX(0.8); }
-      50% { opacity: 1; transform: scaleX(1); }
-    }
-    .subtitle {
-      margin-top: 16px;
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: #9ca3af;
-      font-weight: 500;
-    }
-    .status-panel {
-      margin-top: 32px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .status-badge {
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.875rem;
-      background: rgba(6, 182, 212, 0.1);
-      border: 1px solid var(--neural-cyan);
-      color: var(--neural-cyan);
-      transition: all 0.3s ease;
-    }
-    .status-badge.active {
-      background: rgba(168, 85, 247, 0.2);
-      border-color: var(--neural-purple);
-      animation: pulse-glow 1.5s ease-in-out infinite;
-    }
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 10px rgba(168, 85, 247, 0.3); }
-      50% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.6); }
-    }
-    .controls {
-      margin-top: 48px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .btn {
-      padding: 16px 32px;
-      border-radius: 16px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border: none;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--neural-cyan), var(--neural-purple));
-      color: white;
-      box-shadow: 0 4px 24px rgba(6, 182, 212, 0.25);
-    }
-    .btn-primary:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 32px rgba(6, 182, 212, 0.35);
-    }
-    .btn-secondary {
-      background: transparent;
-      border: 2px solid rgba(6, 182, 212, 0.5);
-      color: var(--neural-cyan);
-    }
-    .btn-secondary:hover {
-      border-color: var(--neural-cyan);
-      background: rgba(6, 182, 212, 0.1);
-    }
-    .hint {
-      margin-top: 24px;
-      font-size: 0.875rem;
-      color: #6b7280;
-    }
+    .container { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+    h1 { font-size: clamp(2rem, 8vw, 4rem); font-weight: 900; text-align: center; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .line { width: 200px; height: 2px; background: linear-gradient(90deg, transparent, var(--cyan), var(--purple), transparent); margin-top: 20px; }
+    .subtitle { margin-top: 12px; color: #9ca3af; }
+    .status-panel { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .badge { padding: 8px 16px; border-radius: 20px; font-size: 14px; background: rgba(6, 182, 212, 0.15); border: 1px solid var(--cyan); color: var(--cyan); }
+    .badge.active { background: rgba(168, 85, 247, 0.25); border-color: var(--purple); animation: glow 1.5s infinite; }
+    @keyframes glow { 0%, 100% { box-shadow: 0 0 10px rgba(168,85,247,0.3); } 50% { box-shadow: 0 0 20px rgba(168,85,247,0.6); } }
+    .controls { margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn { padding: 14px 28px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; border: none; }
+    .btn-primary { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: #fff; box-shadow: 0 4px 20px rgba(6,182,212,0.3); }
+    .btn-primary:hover { transform: scale(1.05); }
+    .btn-secondary { background: transparent; border: 2px solid var(--cyan); color: var(--cyan); }
+    .btn-secondary:hover { background: rgba(6,182,212,0.15); }
+    .hint { margin-top: 20px; color: #6b7280; font-size: 14px; }
   </style>
 </head>
 <body>
@@ -144,260 +35,91 @@
   <canvas id="canvas-core"></canvas>
   
   <div class="container">
-    <div class="neural-title">
-      <h1>NEURAL<br><span class="gradient-text">ARCHITECT</span></h1>
-      <div class="premium-line"></div>
-      <p class="subtitle">AI-First Site Engine • Neural Core v2.0</p>
-    </div>
+    <h1>NEURAL<br>ARCHITECT</h1>
+    <div class="line"></div>
+    <p class="subtitle">Neural Core v2.1</p>
     
     <div class="status-panel">
-      <div class="status-badge" id="ai-state">🧠 AI: idle</div>
-      <div class="status-badge" id="focus-status">👁️ Focus: inactive</div>
-      <div class="status-badge" id="pulse-status">⚡ Pulse: active</div>
+      <div class="badge" id="ai-state">🧠 AI: idle</div>
+      <div class="badge" id="focus-status">👁️ Focus: off</div>
     </div>
     
     <div class="controls">
-      <button class="btn btn-primary" onclick="triggerThink()">🧠 Think</button>
-      <button class="btn btn-secondary" onclick="triggerFocus()">🎯 Focus</button>
-      <button class="btn btn-secondary" onclick="resetCore()">↺ Reset</button>
+      <button class="btn btn-primary" id="btn-think">🧠 Think</button>
+      <button class="btn btn-secondary" id="btn-focus">🎯 Focus</button>
+      <button class="btn btn-secondary" id="btn-reset">↺ Reset</button>
     </div>
     
-    <p class="hint">Move cursor to interact • Click buttons to trigger AI states</p>
+    <p class="hint">Move cursor to interact • Click buttons</p>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
-    const CONFIG = {
-      shape: params.get('shape') || 'icosahedron',
-      color: params.get('color') || '#06b6d4',
-      particles: parseInt(params.get('particles')) || 3000,
-      speed: parseFloat(params.get('speed')) || 1
-    };
+    const CONFIG = { shape: params.get('shape')||'icosahedron', color: params.get('color')||'#06b6d4', particles: parseInt(params.get('particles'))||3000, speed: parseFloat(params.get('speed'))||1 };
+    const AI_STATES = { IDLE:'idle', THINKING:'thinking', FOCUSED:'focused', PROCESSING:'processing', RESTING:'resting' };
+    let currentState = AI_STATES.IDLE, mouse = { x:0, y:0, tx:0, ty:0 }, time = 0;
     
-    const AI_STATES = {
-      IDLE: 'idle',
-      THINKING: 'thinking', 
-      FOCUSED: 'focused',
-      PROCESSING: 'processing',
-      RESTING: 'resting'
-    };
-    
-    let currentState = AI_STATES.IDLE;
-    let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-    let time = 0;
-    
-    // BG Stars Layer
-    const bgCanvas = document.getElementById('canvas-bg');
-    const bgCtx = bgCanvas.getContext('2d');
+    // BG
+    const bgC = document.getElementById('canvas-bg'), bgCtx = bgC.getContext('2d');
     let bgStars = [];
+    function initBg() { bgC.width=window.innerWidth; bgC.height=window.innerHeight; bgStars=[]; for(let i=0;i<200;i++) bgStars.push({x:Math.random()*bgC.width, y:Math.random()*bgC.height, s:Math.random()*1.5, a:Math.random()}); }
+    function renderBg() { bgCtx.clearRect(0,0,bgC.width,bgC.height); const px=mouse.x*15, py=mouse.y*15; bgStars.forEach(s=>{ bgCtx.beginPath(); bgCtx.arc((s.x+px*0.3)%bgC.width,(s.y+py*0.3)%bgC.height,s.s,0,Math.PI*2); bgCtx.fillStyle=`rgba(168,85,247,${s.a*0.5})`; bgCtx.fill(); }); }
     
-    function initBg() {
-      bgCanvas.width = window.innerWidth;
-      bgCanvas.height = window.innerHeight;
-      bgStars = [];
-      for (let i = 0; i < 200; i++) {
-        bgStars.push({
-          x: Math.random() * bgCanvas.width,
-          y: Math.random() * bgCanvas.height,
-          size: Math.random() * 1.5,
-          alpha: Math.random()
-        });
-      }
-    }
-    
-    function renderBg() {
-      bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-      const px = mouse.x * 15;
-      const py = mouse.y * 15;
-      bgStars.forEach(star => {
-        const x = (star.x + px * 0.3) % bgCanvas.width;
-        const y = (star.y + py * 0.3) % bgCanvas.height;
-        bgCtx.beginPath();
-        bgCtx.arc(x, y, star.size, 0, Math.PI * 2);
-        bgCtx.fillStyle = `rgba(168, 85, 247, ${star.alpha * 0.5})`;
-        bgCtx.fill();
-      });
-    }
-    
-    // Particles Layer
-    const particlesCanvas = document.getElementById('canvas-particles');
-    const particlesCtx = particlesCanvas.getContext('2d');
+    // Particles
+    const pC = document.getElementById('canvas-particles'), pCtx = pC.getContext('2d');
     let particles = [];
+    function initP() { pC.width=window.innerWidth; pC.height=window.innerHeight; particles=[]; for(let i=0;i<CONFIG.particles;i++) particles.push({x:Math.random()*pC.width, y:Math.random()*pC.height, z:Math.random()*1000, bs:Math.random()*2+1}); }
+    function renderP() { pCtx.clearRect(0,0,pC.width,pC.height); const px=mouse.x*30, py=mouse.y*30; let pulse=currentState==='processing'?2:currentState==='thinking'?1.5:1; particles.forEach(p=>{ const x=(p.x+px*0.6)%pC.width, y=(p.y+py*0.6)%pC.height, d=(p.z+500)/1000, s=p.bs*d*pulse, al=d*0.6; let c=CONFIG.color; if(currentState==='thinking')c='#a855f7'; if(currentState==='processing')c='#f472b6'; const r=parseInt(c.slice(1,3),16), g=parseInt(c.slice(3,5),16), b=parseInt(c.slice(5,7),16); pCtx.beginPath(); pCtx.arc(x,y,s,0,Math.PI*2); pCtx.fillStyle=`rgba(${r},${g},${b},${al})`; pCtx.fill(); }); }
     
-    function initParticles() {
-      particlesCanvas.width = window.innerWidth;
-      particlesCanvas.height = window.innerHeight;
-      particles = [];
-      for (let i = 0; i < CONFIG.particles; i++) {
-        particles.push({
-          x: Math.random() * particlesCanvas.width,
-          y: Math.random() * particlesCanvas.height,
-          z: Math.random() * 1000,
-          baseSize: Math.random() * 2 + 1
-        });
-      }
-    }
-    
-    function renderParticles() {
-      particlesCtx.clearRect(0, 0, particlesCanvas.width, particlesCanvas.height);
-      const px = mouse.x * 30;
-      const py = mouse.y * 30;
-      let pulse = currentState === AI_STATES.PROCESSING ? 2 : currentState === AI_STATES.THINKING ? 1.5 : 1;
-      
-      particles.forEach(p => {
-        const x = (p.x + px * 0.6) % particlesCanvas.width;
-        const y = (p.y + py * 0.6) % particlesCanvas.height;
-        const depth = (p.z + 500) / 1000;
-        const size = p.baseSize * depth * pulse;
-        const alpha = depth * 0.6;
-        
-        let color = CONFIG.color;
-        if (currentState === AI_STATES.THINKING) color = '#a855f7';
-        if (currentState === AI_STATES.PROCESSING) color = '#f472b6';
-        
-        const r = parseInt(color.slice(1,3), 16);
-        const g = parseInt(color.slice(3,5), 16);
-        const b = parseInt(color.slice(5,7), 16);
-        
-        particlesCtx.beginPath();
-        particlesCtx.arc(x, y, size, 0, Math.PI * 2);
-        particlesCtx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
-        particlesCtx.fill();
-      });
-    }
-    
-    // Three.js Core
-    const coreCanvas = document.getElementById('canvas-core');
+    // Three.js
+    const cC = document.getElementById('canvas-core');
     let scene, camera, renderer, core, wires;
-    
-    function initThreeJS() {
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.z = 5;
-      
-      renderer = new THREE.WebGLRenderer({ canvas: coreCanvas, alpha: true, antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      
-      let geometry;
-      if (CONFIG.shape === 'torus') geometry = new THREE.TorusGeometry(1.2, 0.4, 16, 100);
-      else if (CONFIG.shape === 'sphere') geometry = new THREE.SphereGeometry(1.5, 32, 32);
-      else geometry = new THREE.IcosahedronGeometry(1.5, 1);
-      
-      const material = new THREE.MeshBasicMaterial({ color: CONFIG.color, wireframe: true, transparent: true, opacity: 0.8 });
-      core = new THREE.Mesh(geometry, material);
-      scene.add(core);
-      
-      const wireGeo = new THREE.IcosahedronGeometry(2, 1);
-      const wireMat = new THREE.MeshBasicMaterial({ color: 0xa855f7, wireframe: true, transparent: true, opacity: 0.3 });
-      wires = new THREE.Mesh(wireGeo, wireMat);
-      scene.add(wires);
+    function initThree() {
+      scene = new THREE.Scene(); camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000); camera.position.z = 5;
+      renderer = new THREE.WebGLRenderer({ canvas: cC, alpha: true, antialias: true }); renderer.setSize(window.innerWidth, window.innerHeight);
+      let geo = CONFIG.shape==='torus'?new THREE.TorusGeometry(1.2,0.4,16,100):CONFIG.shape==='sphere'?new THREE.SphereGeometry(1.5,32,32):new THREE.IcosahedronGeometry(1.5,1);
+      core = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: CONFIG.color, wireframe: true, transparent: true, opacity: 0.8 })); scene.add(core);
+      wires = new THREE.Mesh(new THREE.IcosahedronGeometry(2,1), new THREE.MeshBasicMaterial({ color: 0xa855f7, wireframe: true, transparent: true, opacity: 0.3 })); scene.add(wires);
     }
-    
-    function renderThreeJS() {
-      time += 0.01 * CONFIG.speed;
-      mouse.x += (mouse.targetX - mouse.x) * 0.05;
-      mouse.y += (mouse.targetY - mouse.y) * 0.05;
-      
-      const rotSpeed = currentState === AI_STATES.FOCUSED ? 2 : 1;
-      core.rotation.x += 0.005 * rotSpeed * CONFIG.speed;
-      core.rotation.y += 0.008 * rotSpeed * CONFIG.speed;
-      core.position.x = mouse.x * 0.5;
-      core.position.y = -mouse.y * 0.5;
-      
-      let scale = 1;
-      if (currentState === AI_STATES.THINKING) scale = 1 + Math.sin(time * 3) * 0.1;
-      if (currentState === AI_STATES.PROCESSING) scale = 1 + Math.sin(time * 8) * 0.15;
-      if (currentState === AI_STATES.RESTING) scale = 1 + Math.sin(time * 0.5) * 0.05;
-      
-      core.scale.setScalar(scale);
-      wires.scale.setScalar(scale * 1.3);
-      wires.rotation.x -= 0.003;
-      wires.rotation.y += 0.002;
-      
-      if (currentState === AI_STATES.THINKING) core.material.color.setHex(0xa855f7);
-      else if (currentState === AI_STATES.PROCESSING) core.material.color.setHex(0xf472b6);
-      else core.material.color.set(CONFIG.color);
-      
+    function renderThree() {
+      time += 0.01*CONFIG.speed; mouse.x+=(mouse.tx-mouse.x)*0.05; mouse.y+=(mouse.ty-mouse.y)*0.05;
+      const rs = currentState==='focused'?2:1;
+      core.rotation.x += 0.005*rs*CONFIG.speed; core.rotation.y += 0.008*rs*CONFIG.speed;
+      core.position.x = mouse.x*0.5; core.position.y = -mouse.y*0.5;
+      let sc = 1;
+      if(currentState==='thinking') sc = 1+Math.sin(time*3)*0.1;
+      if(currentState==='processing') sc = 1+Math.sin(time*8)*0.15;
+      if(currentState==='resting') sc = 1+Math.sin(time*0.5)*0.05;
+      core.scale.setScalar(sc); wires.scale.setScalar(sc*1.3); wires.rotation.x-=0.003; wires.rotation.y+=0.002;
+      if(currentState==='thinking') core.material.color.setHex(0xa855f7); else if(currentState==='processing') core.material.color.setHex(0xf472b6); else core.material.color.set(CONFIG.color);
       renderer.render(scene, camera);
     }
     
     function updateUI() {
-      const stateEl = document.getElementById('ai-state');
-      const emojis = { idle: '🧠', thinking: '💭', focused: '🎯', processing: '⚡', resting: '😌' };
-      const texts = { idle: 'Idle', thinking: 'Thinking...', focused: 'Focused', processing: 'Processing', resting: 'Resting' };
-      stateEl.textContent = emojis[currentState] + ' AI: ' + texts[currentState];
-      stateEl.classList.toggle('active', currentState === AI_STATES.THINKING || currentState === AI_STATES.PROCESSING);
-      
-      const focusEl = document.getElementById('focus-status');
-      focusEl.textContent = core && (core.position.x !== 0 || core.position.y !== 0) ? '👁️ Focus: active' : '👁️ Focus: inactive';
+      const emojis = { idle:'🧠', thinking:'💭', focused:'🎯', processing:'⚡', resting:'😌' };
+      const texts = { idle:'Idle', thinking:'Thinking...', focused:'Focused', processing:'Processing', resting:'Resting' };
+      document.getElementById('ai-state').textContent = emojis[currentState]+' AI: '+texts[currentState];
+      document.getElementById('ai-state').classList.toggle('active', currentState==='thinking'||currentState==='processing');
+      document.getElementById('focus-status').textContent = core&&(core.position.x!==0||core.position.y!==0)?'👁️ Focus: on':'👁️ Focus: off';
     }
     
-    document.addEventListener('mousemove', (e) => {
-      mouse.targetX = (e.clientX / window.innerWidth - 0.5) * 2;
-      mouse.targetY = (e.clientY / window.innerHeight - 0.5) * 2;
-    });
-    
-    window.addEventListener('resize', () => {
-      bgCanvas.width = window.innerWidth;
-      bgCanvas.height = window.innerHeight;
-      particlesCanvas.width = window.innerWidth;
-      particlesCanvas.height = window.innerHeight;
-      if (renderer) {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      }
-    });
+    document.addEventListener('mousemove', e=>{ mouse.tx=(e.clientX/window.innerWidth-0.5)*2; mouse.ty=(e.clientY/window.innerHeight-0.5)*2; });
+    window.addEventListener('resize', ()=>{ bgC.width=pC.width=window.innerWidth; bgC.height=pC.height=window.innerHeight; if(renderer){ camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight); }});
     
     window.NeuralCore = {
-      setState: (state) => {
-        if (AI_STATES[state.toUpperCase()]) {
-          currentState = AI_STATES[state.toUpperCase()];
-          updateUI();
-        }
-      },
-      getState: () => currentState,
-      config: CONFIG,
-      triggerThink: () => {
-        currentState = AI_STATES.THINKING;
-        setTimeout(() => { currentState = AI_STATES.PROCESSING; }, 2000);
-        setTimeout(() => { currentState = AI_STATES.RESTING; }, 4000);
-        setTimeout(() => { currentState = AI_STATES.IDLE; }, 6000);
-        updateUI();
-      },
-      triggerFocus: () => {
-        currentState = AI_STATES.FOCUSED;
-        setTimeout(() => { currentState = AI_STATES.IDLE; }, 3000);
-        updateUI();
-      }
+      setState: s=>{ if(AI_STATES[s.toUpperCase()]){ currentState=AI_STATES[s.toUpperCase()]; updateUI(); }}, getState:()=>currentState, config: CONFIG,
+      triggerThink: ()=>{ currentState='thinking'; setTimeout(()=>currentState='processing',2000); setTimeout(()=>currentState='resting',4000); setTimeout(()=>currentState='idle',6000); updateUI(); },
+      triggerFocus: ()=>{ currentState='focused'; setTimeout(()=>currentState='idle',3000); updateUI(); }
     };
     
-    window.triggerThink = () => NeuralCore.triggerThink();
-    window.triggerFocus = () => NeuralCore.triggerFocus();
-    window.resetCore = () => {
-      currentState = AI_STATES.IDLE;
-      mouse.x = mouse.targetX = 0;
-      mouse.y = mouse.targetY = 0;
-      updateUI();
-    };
+    document.getElementById('btn-think').onclick = ()=>NeuralCore.triggerThink();
+    document.getElementById('btn-focus').onclick = ()=>NeuralCore.triggerFocus();
+    document.getElementById('btn-reset').onclick = ()=>{ currentState='idle'; mouse.x=mouse.tx=0; mouse.y=mouse.ty=0; updateUI(); };
     
-    initBg();
-    initParticles();
-    initThreeJS();
-    updateUI();
-    
-    function animate() {
-      renderBg();
-      renderParticles();
-      renderThreeJS();
-      updateUI();
-      requestAnimationFrame(animate);
-    }
-    
-    animate();
-    console.log('Neural Core v2.0 initialized');
+    initBg(); initP(); initThree(); updateUI();
+    function loop(){ renderBg(); renderP(); renderThree(); updateUI(); requestAnimationFrame(loop); }
+    loop(); console.log('Neural Core v2.1 ready');
   </script>
 </body>
 </html>
